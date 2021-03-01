@@ -3,6 +3,8 @@
  */
 package com.internal.kafka.controller;
 
+import java.util.concurrent.ExecutionException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,7 +58,18 @@ public class Producer {
 	public String postUsertoKafka(@RequestBody User user)
 	{
 		System.out.println("User Details"+user.toString() );
+		
+		//Types of Sends
+//		Fire and Forget
 		kafkaTemplateSU.send(TOPIC,user.getName(),user);
+//		Synchronous send
+		try {
+			kafkaTemplateSU.send(TOPIC,user.getName(),user).get();
+		} catch (InterruptedException | ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		Asynchronous Send
 		return user.getName()+ " Pushed to Kafka";
 	}
 }
