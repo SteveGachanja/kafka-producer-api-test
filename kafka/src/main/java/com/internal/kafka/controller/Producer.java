@@ -5,6 +5,8 @@ package com.internal.kafka.controller;
 
 import java.util.concurrent.ExecutionException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +36,9 @@ public class Producer {
 	
 	@Autowired 
 	KafkaTemplate<String, String> kafkaTemplateSS;
-	
+
+	Logger logger = LoggerFactory.getLogger(Producer.class.getName());
+
 	/**
 	 * @param userName
 	 * @return
@@ -42,10 +46,9 @@ public class Producer {
 	@GetMapping("/createUser/{userName}")
 	public String createUser(@PathVariable("userName") String userName)
 	{
-		System.out.println("Pushingto kafka");
 		User user = new User("sajith", "userName", "Name");
 		kafkaTemplateSS.send(TOPIC,userName);
-		System.out.println("Pushingto kafka");
+		logger.info("Pushing data to Kafka");
 		return userName+" Pushed to Kafka";
 		
 	}
