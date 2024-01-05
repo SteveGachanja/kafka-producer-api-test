@@ -81,7 +81,7 @@ jobs:
           currentimage=$(cat deployment.yaml | grep image: | awk -F ':' '{print $NF}')
           echo print currentimage $currentimage
           echo print newimage ${{ needs.dockerbuild.outputs.short_sha }}
-          sed -i s#'$currentimage'#'${{ needs.dockerbuild.outputs.short_sha }}'#g deployment.yaml
+          sed -i s#'"$currentimage"'#'"${{ needs.dockerbuild.outputs.short_sha }}"'#g deployment.yaml
           cat deployment.yaml | grep image:
           
       - name: Commit files
