@@ -27,4 +27,4 @@ jobs:
 
     - name: List Built Generated Components
       run: |-
-        pwd && ls -lrt
+        pwd && ls -lrt && ls -lrt kafka
