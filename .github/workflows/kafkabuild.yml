@@ -78,10 +78,10 @@ jobs:
           pwd && ls -lrt
           cd test/kafka
           pwd && ls -lrt
-          currentimage=$(cat deployment.yaml | grep image: | awk -F ':' '{print $NF}')
-          echo print currentimage $currentimage
+          image=$(cat deployment.yaml | grep image: | awk -F ':' '{print $NF}')
+          echo print currentimage $image
           echo print newimage ${{ needs.dockerbuild.outputs.short_sha }}
-          sed -i s#$currentimage#${{ needs.dockerbuild.outputs.short_sha }}#g deployment.yaml
+          sed -i s#$image#${{ needs.dockerbuild.outputs.short_sha }}#g deployment.yaml
           cat deployment.yaml | grep image:
           
       - name: Commit files
