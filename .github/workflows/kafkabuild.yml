@@ -1,0 +1,24 @@
+name: Build Kafka API Docker Image
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  dockerbuild:
+    runs-on: ubuntu-latest
+    
+    # Make outputs SHORT_SHA available to next bump job
+    outputs:
+      short_sha: ${{ steps.getbuildversion.outputs.buildversion }}
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+    - name: List Built Generated Components
+      run: |-
+        pwd && ls -lrt
