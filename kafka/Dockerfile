@@ -1,7 +1,7 @@
 FROM maven:3.5.3-jdk-8-alpine AS builder
 WORKDIR /workspace/app
 
-COPY settings.xml /root/.m2/settings.xml
+#COPY settings.xml /root/.m2/settings.xml
 #COPY AgencyAPI/pom.xml AgencyAPI/pom.xml
 
 COPY pom.xml .
