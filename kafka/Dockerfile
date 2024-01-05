@@ -11,7 +11,7 @@ LABEL maintainer="Steve Gachanja <sngachanja@co-opbank.co.ke>"
 ARG JAR_FILE=kafka/target/kafka-0.0.1-SNAPSHOT.jar
 
 # Add the application's jar to the container
-COPY ./${JAR_FILE} app.jar
+COPY ./kafka/target/kafka-0.0.1-SNAPSHOT.jar app.jar
 
 #Run jar file
 ENTRYPOINT ["java","-jar","app.jar"]
