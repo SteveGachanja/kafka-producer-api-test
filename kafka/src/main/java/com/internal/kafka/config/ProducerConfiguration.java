@@ -33,14 +33,14 @@ import com.internal.kafka.model.User;
 @Configuration
 public class ProducerConfiguration {
 	
-	private static final String LOCALHOST="127.0.0.1:9092";
+	private static final String LOCALHOST="172.16.20.156:9092";
 	
 	@Bean
 	public ProducerFactory<String, User> producerFactory()
 	{
 		Map<String , Object> userConfig = new HashMap<>();
 		
-		 userConfig.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"127.0.0.1:9092"); 
+		 userConfig.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"172.16.20.156:9092"); 
 		 userConfig.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class); 
 		 userConfig.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,JsonSerializer.class); 
 		 
@@ -52,7 +52,7 @@ public class ProducerConfiguration {
 	{
 		Map<String , Object> userConfig = new HashMap<>();
 		
-		 userConfig.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"127.0.0.1:9092"); 
+		 userConfig.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"172.16.20.156:9092"); 
 		 userConfig.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,StringSerializer.class); 
 		 userConfig.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class); 
 		 
