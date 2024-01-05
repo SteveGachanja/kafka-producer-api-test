@@ -28,7 +28,7 @@ import com.internal.kafka.model.User;
 @RequestMapping("PushMessage")
 public class Producer {
 
-	public static final String TOPIC = "kafka-user-topic";
+	public static final String TOPIC = "myTopicSteve";
 	
 		
 	@Autowired
@@ -46,7 +46,7 @@ public class Producer {
 	@GetMapping("/createUser/{userName}")
 	public String createUser(@PathVariable("userName") String userName)
 	{
-		User user = new User("sajith", "userName", "Name");
+		User user = new User("Steve", "userName", "Name");
 		kafkaTemplateSS.send(TOPIC,userName);
 		logger.info("Pushing data to Kafka");
 		return userName+" Pushed to Kafka";
