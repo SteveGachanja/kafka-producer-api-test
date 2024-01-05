@@ -1,26 +1,17 @@
-FROM maven:3.5.3-jdk-8-alpine AS builder
-WORKDIR /workspace/app
+# Start with a base image containing Java runtime
+FROM openjdk:11
 
-#COPY settings.xml /root/.m2/settings.xml
-#COPY AgencyAPI/pom.xml AgencyAPI/pom.xml
+# Add Maintainer Info
+LABEL maintainer="Steve Gachanja <sngachanja@co-opbank.co.ke>"
 
-COPY pom.xml .
+#Build image
+# Make port 8080 available to the world outside this container
 
-#RUN mvn dependency:go-offline
-RUN mvn clean install
+# The application's jar file
+ARG JAR_FILE=kafka/target/kafka-0.0.1-SNAPSHOT.jar
 
-COPY src src
+# Add the application's jar to the container
+COPY ./${JAR_FILE} app.jar
 
-RUN mvn -DskipTests  package
-RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
-
-FROM openjdk:8-jdk-alpine
-RUN echo "Africa/Nairobi" > /etc/timezone
-
-ARG DEPENDENCY=/workspace/app/target/dependency
-
-COPY --from=builder ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY --from=builder ${DEPENDENCY}/META-INF /app/META-INF
-COPY --from=builder ${DEPENDENCY}/BOOT-INF/classes /app
-
-ENTRYPOINT ["java","-Dspring.config.location=/app/","-cp","app:app/lib/*","com.internal.kafka.KafkaApplication"]
+#Run jar file
+ENTRYPOINT ["java","-jar","app.jar"]
