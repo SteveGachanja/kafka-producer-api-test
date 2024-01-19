@@ -8,7 +8,7 @@ import com.internal.kafka.model.User;
 @Service
 public class KafkaConsumerListener {
 	
-	public static final String TOPIC = "myTopicSteve";
+	public static final String TOPIC = "TestMHTransactions";
 	
 	@KafkaListener(topics = TOPIC, groupId = "Consumer_Group")
 	public void Consume(String Name)
