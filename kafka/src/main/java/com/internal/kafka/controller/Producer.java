@@ -28,7 +28,7 @@ import com.internal.kafka.model.User;
 @RequestMapping("PushMessage")
 public class Producer {
 
-	public static final String TOPIC = "TestMHTransactions";
+	public static final String TOPIC = "myTopicSteve";
 	
 		
 	@Autowired
