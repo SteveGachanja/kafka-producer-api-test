@@ -5,7 +5,20 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-
+    
+env:
+  # Additional variables can be created using the format below.
+  # The info available to the push event can be found here: 
+  # https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads
+  # Push build action
+  GITHUB_REPO: ${{ github.event.repository.name }}
+  GITHUB_PUSHER_NAME: ${{ github.event.pusher.name }}
+  GITHUB_PUSHER_EMAIL: ${{ github.event.pusher.email }}
+  GITHUB_HEAD_COMMIT: ${{ github.event.head_commit.url}}
+  GITHUB_MESG: ${{ github.event.head_commit.message }}
+  GITHUB_COMPARE: ${{ github.event.compare }}
+  GITHUB_VERSION: ${{ github.event.compare }}
+  
 jobs:
   dockerbuild:
     name: DockerBuild
@@ -69,8 +82,7 @@ jobs:
       - name: Wait for approval
         uses: trstringer/manual-approval@v1
         with:
-          secret: ${{ steps.generate_token.outputs.token }}
-          approvers: myteam
+          secret: ${{ secrets.MY_GIT_TOKEN }}
           minimum-approvals: 1
       
       - name: Check out code
