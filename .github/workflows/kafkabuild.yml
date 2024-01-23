@@ -83,6 +83,7 @@ jobs:
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{ secrets.MY_GIT_TOKEN }}
+          approvers: SteveGachanja
           minimum-approvals: 1
       
       - name: Check out code
