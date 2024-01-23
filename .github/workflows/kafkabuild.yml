@@ -70,7 +70,7 @@ jobs:
       - uses: trstringer/manual-approval@v1
         with:
           secret: ${{ secrets.MY_GIT_TOKEN }}
-          approvers: stevegachanja
+         # approvers: stevegachanja
           minimum-approvals: 1
           issue-title: "Deploying to SIT after BUILD"
           issue-body: "Please approve or deny the deployment to SIT"
