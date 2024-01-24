@@ -75,7 +75,7 @@ jobs:
         platforms: linux/amd64,linux/arm64
         push: true
         tags: |
-          ghcr.io/co-opbank/kafka-api:latest
+          ghcr.io/co-opbank/kafka-producer-api-test:latest
         cache-from: ghcr.io/co-opbank/kafka-api
         cache-to: ghcr.io/co-opbank/kafka-api
 
