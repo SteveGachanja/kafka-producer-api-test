@@ -1,5 +1,4 @@
-name: Build Kafka API Docker Image
-
+name: Build and Deploy Kafka API
 on:
   push:
     branches: [ "master" ]
