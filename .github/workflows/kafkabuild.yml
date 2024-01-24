@@ -78,8 +78,10 @@ jobs:
           ghcr.io/co-opbank/kafka-api:latest
           #ghcr.io/co-opbank/kafka-api:${{ steps.getbuildversion.outputs.buildversion }}
           #${{ secrets.DOCKERHUB_USERNAME }}/kafka-api:${{ steps.getbuildversion.outputs.buildversion }}
-        cache-from: ${{ secrets.DOCKERHUB_USERNAME }}/kafka
-        cache-to: ${{ secrets.DOCKERHUB_USERNAME }}/kafka
+        #cache-from: ${{ secrets.DOCKERHUB_USERNAME }}/kafka
+        #cache-to: ${{ secrets.DOCKERHUB_USERNAME }}/kafka
+        cache-from: ghcr.io/co-opbank/kafka-api
+        cache-to: ghcr.io/co-opbank/kafka-api
         
 #DEPLOY TO SIT ENVIRONMENT
   deploy-sit:
