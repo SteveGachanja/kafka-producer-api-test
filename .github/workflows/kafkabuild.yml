@@ -20,6 +20,8 @@ env:
   GITHUB_VERSION: ${{ github.event.compare }}
   
 jobs:
+#BUILD DOCKER IMAGE
+
   dockerbuild:
     name: DockerBuild
     runs-on: ubuntu-latest
@@ -70,8 +72,8 @@ jobs:
           ${{ secrets.DOCKERHUB_USERNAME }}/kafka-api:${{ steps.getbuildversion.outputs.buildversion }}
         cache-from: ${{ secrets.DOCKERHUB_USERNAME }}/kafka
         cache-to: ${{ secrets.DOCKERHUB_USERNAME }}/kafka
-
-
+        
+#DEPLOY TO SIT ENVIRONMENT
   deploy-sit:
     name: Deploy-SIT
     runs-on: ubuntu-latest
