@@ -61,7 +61,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
-        password: ${{ secrets.MY_GIT_TOKEN }}
+        password: ${{ secrets.GIT_HUB_TOKEN }}
 
     # Create image tag
     - name: Add SHORT_SHA env property with HEAD
