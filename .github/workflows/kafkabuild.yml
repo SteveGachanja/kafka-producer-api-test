@@ -61,7 +61,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
-        password: ${{ secrets.NEW_GITHUB_TOKEN }}
+        password: ${{ secrets.MY_GIT_TOKEN }}
 
     # Create image tag
     - name: Add SHORT_SHA env property with HEAD
@@ -98,7 +98,7 @@ jobs:
           repository: CO-OPBANK/deployments
           ref: master
           fetch-depth: 0
-          token: ${{ secrets.NEW_GITHUB_TOKEN }}
+          token: ${{ secrets.MY_GIT_TOKEN }}
           
       - name: Version Image to Current Deployment
         run: |-
